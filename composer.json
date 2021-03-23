@@ -1,0 +1,21 @@
+{
+    "name": "simba77/ckeditor-media-embed",
+    "description": "The library replaces the semantic output of the CKEditor 5 with the html code of the content preview",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/simba77/ckeditor-media-embed",
+    "authors": [
+        {
+            "name": "Maksim Masalov",
+            "email": "simba7@inbox.ru"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Simba77\\MediaEmbed\\": "src"
+        }
+    }
+}
