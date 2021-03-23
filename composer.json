@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Simba77\\MediaEmbed\\": "src"
+            "Simba77\\EmbedMedia\\": "src"
         }
     }
 }
