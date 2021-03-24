@@ -13,9 +13,20 @@
     "require": {
         "php": "^7.3|^8.0"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "slevomat/coding-standard": "^6.4"
+    },
     "autoload": {
         "psr-4": {
             "Simba77\\EmbedMedia\\": "src"
         }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
     }
 }
