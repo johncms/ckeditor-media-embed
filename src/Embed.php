@@ -8,9 +8,14 @@ use Simba77\EmbedMedia\Exception\RuntimeException;
 
 class Embed
 {
-    /** @var array */
+    /** @var EmbedProvider[] */
     protected $providers;
 
+    /**
+     * Embed constructor.
+     *
+     * @param EmbedProvider[] $providers
+     */
     public function __construct(array $providers)
     {
         $this->providers = $providers;
@@ -19,6 +24,7 @@ class Embed
     /**
      * @param string $html
      * @return string
+     * @psalm-suppress RedundantConditionGivenDocblockType
      */
     public function embedMedia(string $html): string
     {
