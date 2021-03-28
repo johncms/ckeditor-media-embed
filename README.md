@@ -1,5 +1,6 @@
 # `simba77/ckeditor-media-embed`
 
+[![PHP-CI](https://github.com/simba77/ckeditor-media-embed/workflows/PHP-CI/badge.svg?branch=master)](https://github.com/simba77/ckeditor-media-embed/actions)
 [![Packagist](https://img.shields.io/packagist/l/simba77/ckeditor-media-embed.svg)](https://packagist.org/packages/simba77/ckeditor-media-embed)
 [![Source Code](https://img.shields.io/badge/source-simba77%2Fckeditor--media--embed-blue)](https://github.com/simba77/ckeditor-media-embed)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/tag/simba77/ckeditor-media-embed.svg?label=stable)](https://github.com/simba77/ckeditor-media-embed/releases)
