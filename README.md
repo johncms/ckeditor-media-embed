@@ -20,4 +20,4 @@ composer require simba77/ckeditor-media-embed
 ## License
 
 The `simba77/ckeditor-media-embed` library is licensed for use under the MIT License (MIT).  
-Please see [LICENSE](https://github.com/simba77/ckeditor-media-embed/blob/main/LICENSE) for more information.
+Please see [LICENSE](https://github.com/simba77/ckeditor-media-embed/blob/master/LICENSE) for more information.
