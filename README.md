@@ -17,6 +17,20 @@ command to install the package and add it as a requirement to your project's
 ```bash
 composer require simba77/ckeditor-media-embed
 ```
+## Example
+
+```PHP
+$providers = [
+    new \Simba77\EmbedMedia\Providers\Youtube(['player_classes' => 'embed-responsive embed-responsive-16by9']),
+];
+
+$embed = new \Simba77\EmbedMedia\Embed($providers);
+
+$html = '<figure class="media"><oembed url="https://youtu.be/8ZLSKEmbt0Y?t=75"></oembed></figure>';
+
+echo $embed->embedMedia($html);
+```
+
 
 ## License
 
