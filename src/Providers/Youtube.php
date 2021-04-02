@@ -10,18 +10,18 @@ use Simba77\EmbedMedia\EmbedProvider;
 class Youtube implements EmbedProvider
 {
     /** @var string */
-    protected $player_max_width = '600px';
+    protected $max_width = '600px';
 
     /** @var string */
-    protected $player_classes = '';
+    protected $classes = '';
 
     public function __construct(array $options = [])
     {
-        if (isset($options['player_max_width'])) {
-            $this->player_max_width = (string) $options['player_max_width'];
+        if (isset($options['max_width'])) {
+            $this->max_width = (string) $options['max_width'];
         }
-        if (isset($options['player_classes'])) {
-            $this->player_classes = (string) $options['player_classes'];
+        if (isset($options['classes'])) {
+            $this->classes = (string) $options['classes'];
         }
     }
 
@@ -40,7 +40,7 @@ class Youtube implements EmbedProvider
             if ($url_attr !== null) {
                 $params = $this->parseUrl($url_attr->value);
                 if (isset($params['video_code'])) {
-                    $html_player = '<div style="max-width: ' . $this->player_max_width . '"><div class="' . $this->player_classes . '">' .
+                    $html_player = '<div style="max-width: ' . $this->max_width . '"><div class="' . $this->classes . '">' .
                         '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>' .
                         '</div></div>';
                     $content = str_replace('<oembed url="' . $url_attr->value . '"></oembed>', $html_player, $content);

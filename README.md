@@ -10,18 +10,23 @@ The library replaces the semantic output of the CKEditor 5 with the html code of
 
 ## Installation
 
-The preferred method of installation is via [Composer](http://getcomposer.org). Run the following
-command to install the package and add it as a requirement to your project's
+The preferred method of installation is via [Composer](http://getcomposer.org). Run the following command to install the package and add it as a requirement to your project's
 `composer.json`:
 
 ```bash
 composer require simba77/ckeditor-media-embed
 ```
+
 ## Example
 
 ```PHP
 $providers = [
-    new \Simba77\EmbedMedia\Providers\Youtube(['player_classes' => 'embed-responsive embed-responsive-16by9']),
+    new \Simba77\EmbedMedia\Providers\Youtube(
+        [
+            'classes'   => 'embed-responsive embed-responsive-16by9',
+            'max_width' => '100%',
+        ]
+    ),
 ];
 
 $embed = new \Simba77\EmbedMedia\Embed($providers);
@@ -30,7 +35,6 @@ $html = '<figure class="media"><oembed url="https://youtu.be/8ZLSKEmbt0Y?t=75"><
 
 echo $embed->embedMedia($html);
 ```
-
 
 ## License
 

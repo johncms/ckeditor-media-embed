@@ -21,7 +21,7 @@ class YoutubeTest extends TestCase
 
     public function testParse(): void
     {
-        $youtube = new Youtube(['player_classes' => 'player_classes']);
+        $youtube = new Youtube(['classes' => 'player_classes']);
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
             '<figure class="media"><div style="max-width: 600px"><div class="player_classes">' .
@@ -30,7 +30,7 @@ class YoutubeTest extends TestCase
             $content
         );
 
-        $youtube = new Youtube(['player_max_width' => '900px']);
+        $youtube = new Youtube(['max_width' => '900px']);
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
             '<figure class="media"><div style="max-width: 900px"><div class="">' .
