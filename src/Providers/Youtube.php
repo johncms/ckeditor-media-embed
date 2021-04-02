@@ -10,18 +10,18 @@ use Simba77\EmbedMedia\EmbedProvider;
 class Youtube implements EmbedProvider
 {
     /** @var string */
-    protected $max_width = '600px';
-
-    /** @var string */
     protected $classes = '';
+
+    /** @var array */
+    protected $styles = [];
 
     public function __construct(array $options = [])
     {
-        if (isset($options['max_width'])) {
-            $this->max_width = (string) $options['max_width'];
-        }
         if (isset($options['classes'])) {
             $this->classes = (string) $options['classes'];
+        }
+        if (isset($options['styles'])) {
+            $this->styles = (array) $options['styles'];
         }
     }
 
@@ -40,15 +40,28 @@ class Youtube implements EmbedProvider
             if ($url_attr !== null) {
                 $params = $this->parseUrl($url_attr->value);
                 if (isset($params['video_code'])) {
-                    $html_player = '<div style="max-width: ' . $this->max_width . '"><div class="' . $this->classes . '">' .
-                        '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>' .
-                        '</div></div>';
+                    $html_player = '<div' . $this->getStyles() . '>';
+                    $html_player .= '<div class="' . $this->classes . '">';
+                    $html_player .= '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>';
+                    $html_player .= '</div></div>';
                     $content = str_replace('<oembed url="' . $url_attr->value . '"></oembed>', $html_player, $content);
                 }
             }
         }
 
         return $content;
+    }
+
+    protected function getStyles(): string
+    {
+        $styles = '';
+        foreach ($this->styles as $name => $value) {
+            $styles .= $name . ':' . $value . ';';
+        }
+        if (empty($styles)) {
+            return '';
+        }
+        return ' style="' . $styles . '"';
     }
 
     /**

@@ -24,17 +24,17 @@ class YoutubeTest extends TestCase
         $youtube = new Youtube(['classes' => 'player_classes']);
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
-            '<figure class="media"><div style="max-width: 600px"><div class="player_classes">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div style="max-width: 600px"><div class="player_classes">' .
+            '<figure class="media"><div><div class="player_classes">' .
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div><div class="player_classes">' .
             '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y"></iframe></div></div></figure>',
             $content
         );
 
-        $youtube = new Youtube(['max_width' => '900px']);
+        $youtube = new Youtube(['styles' => ['max-width' => '900px']]);
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
-            '<figure class="media"><div style="max-width: 900px"><div class="">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div style="max-width: 900px"><div class="">' .
+            '<figure class="media"><div style="max-width:900px;"><div class="">' .
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div style="max-width:900px;"><div class="">' .
             '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y"></iframe></div></div></figure>',
             $content
         );
