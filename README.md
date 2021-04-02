@@ -23,8 +23,11 @@ composer require simba77/ckeditor-media-embed
 $providers = [
     new \Simba77\EmbedMedia\Providers\Youtube(
         [
-            'classes'   => 'embed-responsive embed-responsive-16by9',
-            'max_width' => '100%',
+            'classes' => 'embed-responsive embed-responsive-16by9',
+            'styles'  => [
+                'max-width' => '100%',
+                'width'     => '100%',
+            ],
         ]
     ),
 ];
