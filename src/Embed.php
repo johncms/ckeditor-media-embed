@@ -28,6 +28,10 @@ class Embed
      */
     public function embedMedia(string $html): string
     {
+        if (empty($html)) {
+            return $html;
+        }
+
         foreach ($this->providers as $key => $provider) {
             if ($provider instanceof EmbedProvider) {
                 $html = $provider->parse($html);
