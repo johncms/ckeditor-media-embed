@@ -26,6 +26,6 @@ class EmbedTest extends TestCase
         $this->expectException(RuntimeException::class);
         $providers = [1];
         $embed = new Embed($providers);
-        $embed->embedMedia('');
+        $embed->embedMedia('string');
     }
 }
