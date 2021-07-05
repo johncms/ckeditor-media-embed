@@ -57,7 +57,8 @@ class Youtube implements EmbedProvider
         } catch (InvalidSelectorException $e) {
         }
 
-        return $document->html();
+        // We replace it because the standard LIBXML_HTML_NOIMPLIED flag leads to unexpected behavior when working with nodes.
+        return str_replace(["<html><body>\n", "\n</body></html>"], '', $document->html());
     }
 
     protected function getStyles(): string
