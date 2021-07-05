@@ -1,10 +1,13 @@
 <?php
 
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types=1);
 
 namespace Simba77\EmbedMedia\Providers;
 
-use DOMDocument;
+use DiDom\Document;
+use DiDom\Exceptions\InvalidSelectorException;
 use Simba77\EmbedMedia\EmbedProvider;
 
 class Youtube implements EmbedProvider
@@ -27,29 +30,34 @@ class Youtube implements EmbedProvider
 
     /**
      * @inheritDoc
-     * @psalm-suppress MixedOperand
+     * @psalm-suppress MixedOperand, PossiblyUndefinedMethod
      */
     public function parse(string $content): string
     {
-        $doc = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $doc->loadHTML($content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $embeds = $doc->getElementsByTagName('oembed');
-        foreach ($embeds as $embed) {
-            $url_attr = $embed->attributes->getNamedItem('url');
-            if ($url_attr !== null) {
-                $params = $this->parseUrl($url_attr->value);
-                if (isset($params['video_code'])) {
-                    $html_player = '<div' . $this->getStyles() . '>';
-                    $html_player .= '<div class="' . $this->classes . '">';
-                    $html_player .= '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>';
-                    $html_player .= '</div></div>';
-                    $content = str_replace('<oembed url="' . $url_attr->value . '"></oembed>', $html_player, $content);
+        $document = new Document($content);
+        try {
+            /** @var \DiDom\Element[] $embeds */
+            $embeds = $document->find('figure > oembed');
+            foreach ($embeds as $embed) {
+                $url = $embed->getAttribute('url', '');
+                if (! empty($url)) {
+                    $params = $this->parseUrl($url);
+                    if (isset($params['video_code'])) {
+                        $html_player = '<div' . $this->getStyles() . '>';
+                        $html_player .= '<div class="' . $this->classes . '">';
+                        $html_player .= '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>';
+                        $html_player .= '</div></div>';
+                        $parent = $embed->parent();
+                        if ($parent !== null) {
+                            $parent->setInnerHtml($html_player);
+                        }
+                    }
                 }
             }
+        } catch (InvalidSelectorException $e) {
         }
 
-        return $content;
+        return $document->html();
     }
 
     protected function getStyles(): string
