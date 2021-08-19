@@ -1,9 +1,9 @@
 {
-    "name": "simba77/ckeditor-media-embed",
+    "name": "johncms/ckeditor-media-embed",
     "description": "The library replaces the semantic output of the CKEditor 5 with the html code of the content preview",
     "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/simba77/ckeditor-media-embed",
+    "homepage": "https://github.com/johncms/ckeditor-media-embed",
     "authors": [
         {
             "name": "Maksim Masalov",
