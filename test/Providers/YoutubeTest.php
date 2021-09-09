@@ -25,8 +25,8 @@ class YoutubeTest extends TestCase
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
             '<figure class="media"><div><div class="player_classes">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div><div class="player_classes">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y"></iframe></div></div></figure>',
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?rel=0&amp;start=75"></iframe></div></div></figure><figure class="media"><div><div class="player_classes">' .
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?rel=0"></iframe></div></div></figure>',
             $content
         );
 
@@ -34,8 +34,8 @@ class YoutubeTest extends TestCase
         $content = $youtube->parse($this->html_string);
         $this->assertEquals(
             '<figure class="media"><div style="max-width:900px;"><div class="">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?start=75"></iframe></div></div></figure><figure class="media"><div style="max-width:900px;"><div class="">' .
-            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y"></iframe></div></div></figure>',
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?rel=0&amp;start=75"></iframe></div></div></figure><figure class="media"><div style="max-width:900px;"><div class="">' .
+            '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/8ZLSKEmbt0Y?rel=0"></iframe></div></div></figure>',
             $content
         );
     }

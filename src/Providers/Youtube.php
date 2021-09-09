@@ -43,9 +43,13 @@ class Youtube implements EmbedProvider
                 if (! empty($url)) {
                     $params = $this->parseUrl($url);
                     if (isset($params['video_code'])) {
+                        $urlParams = ['rel' => 0]; // Don't show recommended videos.
+                        if (! empty($params['time'])) {
+                            $urlParams['start'] = $params['time'];
+                        }
                         $html_player = '<div' . $this->getStyles() . '>';
                         $html_player .= '<div class="' . $this->classes . '">';
-                        $html_player .= '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . (! empty($params['time']) ? '?start=' . $params['time'] : '') . '"></iframe>';
+                        $html_player .= '<iframe allowfullscreen="allowfullscreen" src="//www.youtube.com/embed/' . $params['video_code'] . '?' . http_build_query($urlParams) . '"></iframe>';
                         $html_player .= '</div></div>';
                         $parent = $embed->parent();
                         if ($parent !== null) {
